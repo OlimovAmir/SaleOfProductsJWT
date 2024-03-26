@@ -1,6 +1,8 @@
-﻿namespace SaleOfProductsJWT.Services
+﻿using SaleOfProductsJWT.Models;
+
+namespace SaleOfProductsJWT.Services
 {
-    public interface IUserService
+    public interface IUserService: IBaseService<User>
     {
 
     }
