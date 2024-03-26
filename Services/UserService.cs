@@ -1,9 +1,16 @@
 ﻿using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Repositories;
 
 namespace SaleOfProductsJWT.Services
 {
     public class UserService : IUserService
     {
+        IPostgreSQLRepository<User> _repository;
+
+        public UserService(IPostgreSQLRepository<User> repository)
+        {
+            _repository = repository;
+        }
         public string Create(User item)
         {
             throw new NotImplementedException();
