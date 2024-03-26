@@ -35,7 +35,7 @@ namespace SaleOfProductsJWT.Services
 
         public IQueryable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public User GetById(Guid id)
