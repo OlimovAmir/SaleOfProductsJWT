@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Services;
 
 namespace SaleOfProductsJWT.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController<User>
     {
-        public IActionResult Index()
+        public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
         {
-            return View();
         }
     }
 }
