@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SaleOfProductsJWT.Models;
 
 namespace SaleOfProductsJWT.Infrastructure
 {
@@ -10,8 +11,10 @@ namespace SaleOfProductsJWT.Infrastructure
             Database.EnsureCreated();
         }
 
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
         }
     }
