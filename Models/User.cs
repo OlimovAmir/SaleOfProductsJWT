@@ -8,6 +8,11 @@ namespace SaleOfProductsJWT.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public string? RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
+
+        public User() { }
+
         public User(Guid id, string name, string email, string password )
         {
             Id = id;
