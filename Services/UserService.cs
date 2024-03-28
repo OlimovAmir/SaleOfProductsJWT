@@ -1,6 +1,10 @@
-﻿using SaleOfProductsJWT.Infrastructure;
+﻿using Microsoft.IdentityModel.Tokens;
+using SaleOfProductsJWT.Infrastructure;
 using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Repositories;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace SaleOfProductsJWT.Services
 {
@@ -22,7 +26,32 @@ namespace SaleOfProductsJWT.Services
 
         public User Authenticate(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.SingleOrDefault(x => x.Name == username && x.Password == password);
+
+            // Return null if user not found
+            if (user == null)
+                return null;
+
+            // Authentication successful so generate JWT token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_config["Jwt:Secret"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                new Claim(ClaimTypes.Name, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role)
+                }),
+                Expires = DateTime.UtcNow.AddHours(1), // Token expires in 1 hour
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            user.Token = tokenHandler.WriteToken(token);
+
+            // Remove password before returning
+            user.Password = null;
+
+            return user;
         }
 
         public string Create(User item)
