@@ -1,16 +1,30 @@
-﻿using SaleOfProductsJWT.Models;
+﻿using SaleOfProductsJWT.Infrastructure;
+using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Repositories;
 
 namespace SaleOfProductsJWT.Services
 {
     public class UserService : IUserService
     {
+        private readonly IConfiguration _config;
+        private readonly PostgreSQLDbContext _context;
+
         IPostgreSQLRepository<User> _repository;
 
-        public UserService(IPostgreSQLRepository<User> repository)
+        public UserService(IPostgreSQLRepository<User> repository, IConfiguration config, PostgreSQLDbContext context)
         {
             _repository = repository;
+            _config = config;
+            _context = context;
         }
+
+
+
+        public User Authenticate(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Create(User item)
         {
             if (string.IsNullOrEmpty(item.Name))
