@@ -46,7 +46,7 @@ namespace SaleOfProductsJWT.Services
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Token = tokenHandler.WriteToken(token);
+            
 
             // Remove password before returning
             user.Password = null;
