@@ -4,7 +4,7 @@ using SaleOfProductsJWT.Services;
 
 namespace SaleOfProductsJWT.Controllers
 {
-    public abstract class BaseController<TEntity> : ControllerBase where TEntity : BaseEntity
+    public abstract class BaseController<TEntity> : ControllerBase
     {
         protected readonly IBaseService<TEntity> _service;
         protected readonly ILogger<BaseController<TEntity>> _logger;
