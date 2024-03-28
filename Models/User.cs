@@ -1,8 +1,9 @@
-﻿using SaleOfProductsJWT.Models.BaseClassModels;
+﻿using Microsoft.AspNetCore.Identity;
+using SaleOfProductsJWT.Models.BaseClassModels;
 
 namespace SaleOfProductsJWT.Models
 {
-    public class User : BaseEntity
+    public class User : IdentityUser<long>
     {
         public string Name { get; set; }
         public string Email { get; set; }
