@@ -12,6 +12,8 @@ namespace SaleOfProductsJWT.Infrastructure
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
