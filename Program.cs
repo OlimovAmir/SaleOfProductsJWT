@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
+using SaleOfProductsJWT.Auth;
 using SaleOfProductsJWT.Infrastructure;
+using SaleOfProductsJWT.Middlewares;
 using SaleOfProductsJWT.Repositories;
 using SaleOfProductsJWT.Services;
 using System.Text;
@@ -10,25 +12,11 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// конфигурация аутентификации JWT
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "your_issuer", // Укажите ваше значение
-            ValidAudience = "your_audience", // Укажите ваше значение
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key")) // Укажите ваш секретный ключ
-        };
-    });
-
+builder.Services.AddMyAuth();
 
 NpgsqlConnection.GlobalTypeMapper.EnableDynamicJson();
+
+
 builder.Services.AddDbContext<PostgreSQLDbContext>(options =>
            options.UseNpgsql(builder.Configuration.GetConnectionString("DbPostgres"))
            .LogTo(Console.Write, LogLevel.Information)
@@ -62,6 +50,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMyServices();
 
 builder.Services.AddScoped(typeof(IPostgreSQLRepository<>), typeof(PostgreSQLRepository<>));
 
@@ -80,6 +69,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<GlobalExceptionMiddleware>();
+app.UseMiddleware<ApplicationKeyMiddleware>();
+app.UseMiddleware<EndpointListenerMiddleware>();
+
 app.UseCors("AllowLocalhost"); // Применяем CORS middleware
 
 app.UseHttpsRedirection();
@@ -87,5 +80,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapGet("MyMinAPI", (string name) => $"Hello {name}");
 
 app.Run();
