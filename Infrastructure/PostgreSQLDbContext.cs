@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Models.BaseClassModels;
 
 namespace SaleOfProductsJWT.Infrastructure
 {
@@ -16,6 +17,13 @@ namespace SaleOfProductsJWT.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<BaseEntity>();
+
+            modelBuilder.Entity<Person>(entity =>
+            {
+                entity.HasKey(p => p.Id);
+                entity.HasIndex(p => p.Username).IsUnique();
+            });
 
             base.OnModelCreating(modelBuilder);
         }
