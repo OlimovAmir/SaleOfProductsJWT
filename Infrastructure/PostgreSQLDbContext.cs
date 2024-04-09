@@ -8,12 +8,13 @@ namespace SaleOfProductsJWT.Infrastructure
     {
         public PostgreSQLDbContext(DbContextOptions<PostgreSQLDbContext> options) : base(options)
         {
-            Database.Migrate();
+            //Database.Migrate();
             Database.EnsureCreated();
         }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<User> Users { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +24,11 @@ namespace SaleOfProductsJWT.Infrastructure
             {
                 entity.HasKey(p => p.Id);
                 entity.HasIndex(p => p.Username).IsUnique();
+                entity.HasIndex(p => p.FirstName).IsUnique(); // Если Name уникально для всех Person, то определите индекс здесь
             });
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }

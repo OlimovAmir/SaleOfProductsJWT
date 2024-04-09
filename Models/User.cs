@@ -3,7 +3,7 @@ using SaleOfProductsJWT.Models.BaseClassModels;
 
 namespace SaleOfProductsJWT.Models
 {
-    public class User : IdentityUser<long>
+    public class User : Person
     {
         public Guid Id { get; set; } 
         public string Name { get; set; }
