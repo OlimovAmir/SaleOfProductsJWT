@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SaleOfProductsJWT.Models;
-using SaleOfProductsJWT.Services;
+using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Controllers
 {
