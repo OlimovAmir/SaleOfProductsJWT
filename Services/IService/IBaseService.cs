@@ -1,4 +1,4 @@
-﻿namespace SaleOfProductsJWT.Services
+﻿namespace SaleOfProductsJWT.Services.IService
 {
     public interface IBaseService<TEntity>
     {
