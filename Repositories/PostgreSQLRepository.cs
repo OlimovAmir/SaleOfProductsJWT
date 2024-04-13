@@ -1,9 +1,10 @@
 ﻿
 using SaleOfProductsJWT.Infrastructure;
+using SaleOfProductsJWT.Models.BaseClassModels;
 
 namespace SaleOfProductsJWT.Repositories
 {
-    public class PostgreSQLRepository<T> : IPostgreSQLRepository<T>
+    public class PostgreSQLRepository<T> : IPostgreSQLRepository<T> where T : BaseEntity
     {
         readonly PostgreSQLDbContext _context;
         public PostgreSQLRepository(PostgreSQLDbContext bankContext)
@@ -26,17 +27,30 @@ namespace SaleOfProductsJWT.Repositories
 
         public bool Delete(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var item = _context.Set<T>().SingleOrDefault(w => w.Id == id);
+                if (item is not null)
+                {
+                    _context.Remove(item);
+                    var result = _context.SaveChanges();
+                    return result > 0;
+                }
+            }
+            catch
+            { }
+
+            return false;
         }
 
         public IQueryable<T> GetAll()
         {
-            return _repository.GetAll();
+            return _context.Set<T>();
         }
 
         public T GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().SingleOrDefault(w => w.Id == id);
         }
 
         public bool Update(T item)

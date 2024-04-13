@@ -20,11 +20,19 @@ namespace SaleOfProductsJWT.Infrastructure
         {
             modelBuilder.Ignore<BaseEntity>();
 
+
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.HasKey(p => p.Id);
                 entity.HasIndex(p => p.Username).IsUnique();
-                entity.HasIndex(p => p.FirstName).IsUnique(); // Если Name уникально для всех Person, то определите индекс здесь
+            });
+
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(p => p.Id);
+                entity.HasIndex(p => p.Name).IsUnique();
+                
             });
 
 
