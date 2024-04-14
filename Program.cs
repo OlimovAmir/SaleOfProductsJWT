@@ -51,6 +51,7 @@ builder.Services.AddCors(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bank application APIs", Version = "v1" });
@@ -74,6 +75,9 @@ builder.Services.AddSwaggerGen(c =>
                 { securityScheme, new List<string>() }
             });
 });
+
+//Adding custom services
+builder.Services.AddMyServices();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSwaggerGen();
