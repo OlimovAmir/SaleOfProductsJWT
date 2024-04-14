@@ -108,6 +108,7 @@ app.UseCors("AllowLocalhost"); // Применяем CORS middleware
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
