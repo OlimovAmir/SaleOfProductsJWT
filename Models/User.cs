@@ -15,6 +15,7 @@ namespace SaleOfProductsJWT.Models
 
         [JsonIgnore]
         public string? RefreshToken { get; set; }
+        [JsonIgnore]
         public DateTime RefreshTokenExpiryTime { get; set; }
 
         public User() { }
