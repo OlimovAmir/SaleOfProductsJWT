@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SaleOfProductsJWT.Models.BaseClassModels;
+using System.Text.Json.Serialization;
 
 namespace SaleOfProductsJWT.Models
 {
@@ -12,6 +13,7 @@ namespace SaleOfProductsJWT.Models
 
         public string Role { get; set; }
 
+        [JsonIgnore]
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
 
