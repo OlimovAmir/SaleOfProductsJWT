@@ -18,6 +18,8 @@ namespace SaleOfProductsJWT.Models
         [JsonIgnore]
         public DateTime RefreshTokenExpiryTime { get; set; }
 
+        public bool IsBlocked { get; }
+
         public User() { }
 
         public User(Guid id, string name, string email, string password )

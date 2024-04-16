@@ -43,7 +43,7 @@ namespace SaleOfProductsJWT.Controllers
         }
 
         [HttpDelete("Delete")]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         public virtual string Delete([FromQuery] Guid id)
         {
             return _service.Delete(id);

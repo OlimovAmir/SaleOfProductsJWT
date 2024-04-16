@@ -22,19 +22,19 @@ namespace SaleOfProductsJWT.Services
 
         public async Task<TokenInfo> Login(string username, string password)
         {
-            var user = await _context.Persons.SingleOrDefaultAsync(x => x.Username == username && x.Password == password);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Name == username && x.Password == password);
 
             return await GeneratedJWT(user);
         }
 
         public async Task<TokenInfo> RefreshToken(string refreshToken)
         {
-            var user = await _context.Persons.SingleOrDefaultAsync(x => x.RefreshToken == refreshToken);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.RefreshToken == refreshToken);
 
             return await GeneratedJWT(user);
         }
 
-        async Task<TokenInfo> GeneratedJWT(Person user)
+        async Task<TokenInfo> GeneratedJWT(User user)
         {
             if (user is null)
                 throw new ArgumentException("Invalid username or password.");
@@ -42,11 +42,16 @@ namespace SaleOfProductsJWT.Services
             if (user.IsBlocked)
                 throw new ArgumentException("User does not have access to login.");
 
+            var userRoles = new string[] { user.Role };
+
             var claims = new List<Claim> {
                 new Claim("Id", user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Name, user.Name),
+                
             };
+
+            foreach (var userRole in userRoles)
+                new Claim(ClaimTypes.Role, userRole);
 
             // создаем JWT-токен
             var jwt = new JwtSecurityToken(

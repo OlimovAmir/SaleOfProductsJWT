@@ -13,8 +13,8 @@ namespace SaleOfProductsJWT.Controllers
         {
             _authService = authService;
         }
-        // точка входа для аутентификации пользователей
-        [HttpPost("Login")]
+
+        [HttpPost("Token")]
         public async Task<IActionResult> LogIn(string username, string password)
         {
             try
@@ -27,7 +27,7 @@ namespace SaleOfProductsJWT.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        // точка входа для обновления токена аутентификации
+
         [HttpPost("RefreshToken")]
         public async Task<IActionResult> RefreshToken(string refreshToken)
         {
