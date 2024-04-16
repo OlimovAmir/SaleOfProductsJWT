@@ -1,4 +1,5 @@
 ﻿using SaleOfProductsJWT.Repositories;
+using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Services
 {
@@ -7,8 +8,7 @@ namespace SaleOfProductsJWT.Services
         public static void AddMyServices(this IServiceCollection service)
         {
             service.AddScoped<AuthService>();
-            // service.AddScoped<IUserService, UserService>();
-
+            service.AddScoped<IUserService, UserService>();
             service.AddScoped(typeof(IPostgreSQLRepository<>), typeof(PostgreSQLRepository<>));
         }
     }

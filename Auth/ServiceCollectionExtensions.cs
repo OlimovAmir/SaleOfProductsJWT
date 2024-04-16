@@ -7,7 +7,17 @@ namespace SaleOfProductsJWT.Auth
     {
         public static void AddMyAuth(this IServiceCollection service)
         {
-            service.AddAuthorization();
+            service.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminOnly",
+                    policy =>
+                    {
+                        policy.RequireRole("admin");
+                        policy.RequireRole("editor");
+                    });
+                options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+            });
+
             service.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
