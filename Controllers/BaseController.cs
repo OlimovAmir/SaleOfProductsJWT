@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SaleOfProductsJWT.Models.BaseClassModels;
 using SaleOfProductsJWT.Services.IService;
 
@@ -42,6 +43,7 @@ namespace SaleOfProductsJWT.Controllers
         }
 
         [HttpDelete("Delete")]
+        [Authorize(Roles = "admin")]
         public virtual string Delete([FromQuery] Guid id)
         {
             return _service.Delete(id);

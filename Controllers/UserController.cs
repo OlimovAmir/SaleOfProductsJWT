@@ -14,7 +14,7 @@ namespace SaleOfProductsJWT.Controllers
         public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
         {
         }
-            
 
+        
     }
 }
