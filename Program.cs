@@ -77,9 +77,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 //Adding custom services
-builder.Services.AddMyServices();
 
-builder.Services.AddScoped<IUserService, UserService>();
+
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddMyServices();
 
