@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SaleOfProductsJWT.Contracts;
-using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Services;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace SaleOfProductsJWT.Controllers
 {
