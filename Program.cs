@@ -35,6 +35,8 @@ builder.Services.AddLogging(l =>
 builder.Services.AddControllers()
             .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost",
