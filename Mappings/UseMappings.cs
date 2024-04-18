@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Models.UserDTO;
 
 namespace SaleOfProductsJWT.Mappings
