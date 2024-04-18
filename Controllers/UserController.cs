@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Models.UserDTO;
+using SaleOfProductsJWT.Services;
 using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Controllers
@@ -17,6 +19,13 @@ namespace SaleOfProductsJWT.Controllers
             _mapper = mapper;
         }
 
-        
+       
+        [HttpGet("AllUSER")]
+        public virtual IEnumerable<UserDTO> Get()
+        {
+            var users = _service.GetAll();
+            var userDTOs = _mapper.Map<IEnumerable<UserDTO>>(users);
+            return userDTOs;
+        }
     }
 }
