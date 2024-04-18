@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Services.IService;
@@ -10,9 +11,10 @@ namespace SaleOfProductsJWT.Controllers
     [Authorize]
     public class UserController : BaseController<User>
     {
-       
-        public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
+        private readonly IMapper _mapper;
+        public UserController(ILogger<UserController> logger, IUserService service, IMapper mapper) : base(logger, service)
         {
+            _mapper = mapper;
         }
 
         
