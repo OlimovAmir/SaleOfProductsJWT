@@ -27,5 +27,7 @@ namespace SaleOfProductsJWT.Controllers
             var userDTOs = _mapper.Map<IEnumerable<UserDTO>>(users);
             return userDTOs;
         }
+
+
     }
 }

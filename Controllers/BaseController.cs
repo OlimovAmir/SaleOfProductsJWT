@@ -30,10 +30,7 @@ namespace SaleOfProductsJWT.Controllers
         [HttpPost("Create")]
         public virtual string Post([FromBody] TEntity item)
         {
-
-
             return _service.Create(item);
-
         }
 
         [HttpPut("Update")]
