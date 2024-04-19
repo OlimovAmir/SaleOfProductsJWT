@@ -6,6 +6,9 @@ namespace SaleOfProductsJWT.Validations
 {
     public class UserValidation : AbstractValidator<RequestCreateUser>
     {
-
+        public UserValidation()
+        {
+            
+        }
     }
 }
