@@ -1,6 +1,10 @@
-﻿namespace SaleOfProductsJWT.Validations
+﻿using FluentValidation;
+using SaleOfProductsJWT.Contracts;
+
+
+namespace SaleOfProductsJWT.Validations
 {
-    public class UserValidation
+    public class UserValidation : AbstractValidator<RequestCreateUser>
     {
 
     }
