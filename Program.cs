@@ -11,6 +11,8 @@ using SaleOfProductsJWT.Services;
 using SaleOfProductsJWT.Services.IService;
 using System.Text;
 using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
+using SaleOfProductsJWT.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +35,8 @@ builder.Services.AddLogging(l =>
 // Add services to the container.
 
 builder.Services.AddControllers()
-            .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+           .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
+           .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserValidation>());
 
 builder.Services.AddAutoMapper(typeof(Program));
 

@@ -12,7 +12,8 @@ namespace SaleOfProductsJWT.Mappings
         {
             CreateMap<UserDTO, User>();
             CreateMap<User, UserDTO>();
-            // Добавьте другие настройки для остальных полей
+            CreateMap<User, RequestCreateUser>();
+
         }
     }
 }

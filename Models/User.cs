@@ -3,10 +3,13 @@ using SaleOfProductsJWT.Models.BaseClassModels;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
+
 namespace SaleOfProductsJWT.Models
 {
     public class User : BaseEntity
     {
+        [JsonIgnore]
+        public override Guid Id { get; set; }
         [Required(ErrorMessage = "Имя пользователя обязательно для заполнения")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Email обязателен для заполнения")]

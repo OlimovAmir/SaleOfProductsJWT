@@ -1,8 +1,11 @@
-﻿namespace SaleOfProductsJWT.Models.BaseClassModels
+﻿
+
+namespace SaleOfProductsJWT.Models.BaseClassModels
 {
     public abstract class BaseEntity
     {
-        public Guid Id { get; set; }
+        
+        public virtual  Guid Id { get; set; }
 
         public BaseEntity()
         {
