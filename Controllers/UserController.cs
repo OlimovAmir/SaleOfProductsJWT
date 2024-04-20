@@ -12,6 +12,7 @@ namespace SaleOfProductsJWT.Controllers
     [Route("[controller]")]
     [Authorize]
     public class UserController : BaseController<User>
+        
     {
         private readonly IMapper _mapper;
         public UserController(ILogger<UserController> logger, IUserService service, IMapper mapper) : base(logger, service)
@@ -27,6 +28,9 @@ namespace SaleOfProductsJWT.Controllers
             var userDTOs = _mapper.Map<IEnumerable<UserDTO>>(users);
             return userDTOs;
         }
+
+       
+
 
 
     }
