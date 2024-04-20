@@ -10,11 +10,8 @@ namespace SaleOfProductsJWT.Mappings
 
         public UseMappings()
         {
-            CreateMap<User, UserDTO>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email));
-
-            CreateMap<RequestCreateUser, User>();
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>();
             // Добавьте другие настройки для остальных полей
         }
     }

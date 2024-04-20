@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SaleOfProductsJWT.Models.BaseClassModels;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace SaleOfProductsJWT.Models
 {
     public class User : BaseEntity
     {
-        
+        [Required(ErrorMessage = "Имя пользователя обязательно для заполнения")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Email обязателен для заполнения")]
+        [EmailAddress(ErrorMessage = "Введите корректный Email")]
         public string Email { get; set; }
         public string Password { get; set; }
 
