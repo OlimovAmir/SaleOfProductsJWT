@@ -118,6 +118,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapGet("MyMinAPI", (string name) => $"Hello {name}");
+app.MapGet("MyAPI", (string name) => $"Hi {name}");
 
 app.Run();
