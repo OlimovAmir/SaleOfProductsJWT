@@ -1,5 +1,6 @@
 ﻿using SaleOfProductsJWT.Infrastructure;
 using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Repositories;
 using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Services.Service
@@ -8,6 +9,8 @@ namespace SaleOfProductsJWT.Services.Service
     {
         private readonly IConfiguration _config;
         private readonly PostgreSQLDbContext _context;
+
+        IPostgreSQLRepository<UserRole> _repository;
         public string Create(UserRole item)
         {
             throw new NotImplementedException();
