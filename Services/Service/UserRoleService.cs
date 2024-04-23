@@ -48,7 +48,7 @@ namespace SaleOfProductsJWT.Services.Service
 
         public UserRole GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id);
         }
 
         public string Update(Guid id, UserRole item)
