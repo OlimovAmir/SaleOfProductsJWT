@@ -87,8 +87,6 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddMyServices();
-
-
 builder.Services.AddScoped(typeof(IPostgreSQLRepository<>), typeof(PostgreSQLRepository<>));
 
 var app = builder.Build();
