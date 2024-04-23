@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SaleOfProductsJWT.Models;
+using SaleOfProductsJWT.Controllers;
+using AutoMapper;
+using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Controllers
 {
-    public class UserRoleController : Controller
+    public class UserRoleController : BaseController<UserRole>
     {
-        public IActionResult Index()
+        private readonly IMapper _mapper;
+        public UserRoleController(ILogger<UserRoleController> logger, IUserRoleService service, IMapper mapper) : base(logger, service)
         {
-            return View();
+            _mapper = mapper;
         }
     }
 }
