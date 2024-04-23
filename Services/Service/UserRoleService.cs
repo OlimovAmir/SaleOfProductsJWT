@@ -11,6 +11,14 @@ namespace SaleOfProductsJWT.Services.Service
         private readonly PostgreSQLDbContext _context;
 
         IPostgreSQLRepository<UserRole> _repository;
+
+        public UserRoleService(IPostgreSQLRepository<UserRole> repository, IConfiguration config, PostgreSQLDbContext context)
+        {
+            _repository = repository;
+            _config = config;
+            _context = context;
+        }
+
         public string Create(UserRole item)
         {
             throw new NotImplementedException();
