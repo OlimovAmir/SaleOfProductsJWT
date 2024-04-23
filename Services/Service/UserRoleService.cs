@@ -43,7 +43,7 @@ namespace SaleOfProductsJWT.Services.Service
 
         public IQueryable<UserRole> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public UserRole GetById(Guid id)
