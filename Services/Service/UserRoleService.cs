@@ -1,10 +1,13 @@
-﻿using SaleOfProductsJWT.Models;
+﻿using SaleOfProductsJWT.Infrastructure;
+using SaleOfProductsJWT.Models;
 using SaleOfProductsJWT.Services.IService;
 
 namespace SaleOfProductsJWT.Services.Service
 {
     public class UserRoleService : IUserRoleService
     {
+        private readonly IConfiguration _config;
+        private readonly PostgreSQLDbContext _context;
         public string Create(UserRole item)
         {
             throw new NotImplementedException();
